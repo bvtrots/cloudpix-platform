@@ -5,25 +5,6 @@ const getRandomInteger = (min, max) => {
   return Math.floor(result);
 };
 
+const sortRandom = () => getRandomInteger(-1, 1);
 
-const getRandomElement = (elements) =>
-  elements[getRandomInteger(0, elements.length - 1)];
-
-const createIdGenerator = (min, max, uniqueness = false) => {
-  const storage = [];
-
-  return () => {
-    let randomValue = getRandomInteger(min, max);
-
-    if (uniqueness) {
-      while (storage.includes(randomValue)) {
-        randomValue = getRandomInteger(min, max);
-      }
-      storage.push(randomValue);
-    }
-    return randomValue;
-  };
-};
-
-
-export { getRandomInteger, getRandomElement, createIdGenerator };
+export { getRandomInteger, sortRandom };

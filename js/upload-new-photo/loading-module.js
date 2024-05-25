@@ -5,10 +5,12 @@ import './photo-editing.js';
 import { resetSlider } from './effects.js';
 import { uploadNewPhoto } from '../utils/api.js';
 import { blockSubmitButton, unblockSubmitButton } from './submit-state.js';
+import { parsePhoto } from './upload-new-photo.js';
 import {
   successfulFormSubmission,
   failFormSubmission,
 } from './status-modals.js';
+import {reloadPage} from "../utils/util";
 
 const form = document.querySelector('.img-upload__form');
 const filename = form.filename;
@@ -23,11 +25,13 @@ const onDocumentEscape = (evt) => {
   if (isEscapeKey(evt) && !isFocusText()) {
     evt.preventDefault();
     closeModal();
+    reloadPage();
   }
 };
 
 filename.addEventListener('change', (evt) => {
   evt.preventDefault();
+  parsePhoto(filename.files[0]);
   toggleModalClasses(editingModal, true);
   document.addEventListener('keydown', onDocumentEscape);
 });

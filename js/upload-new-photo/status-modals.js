@@ -1,4 +1,4 @@
-import { getTemplate } from '../utils/util.js';
+import {getTemplate, reloadPage} from '../utils/util.js';
 import { isEscapeKey } from '../utils/modal-windows.js';
 
 const templateSuccess = getTemplate('success');
@@ -14,16 +14,17 @@ const createNotification = (template, captureEscape = false) => {
     modal.removeEventListener('click', handleModalClick);
     document.removeEventListener('keydown', handleDocumentKey, captureEscape);
     modal.remove();
+    reloadPage();
   };
 
   function handleModalClick(evt) {
-    if(evt.target === button || evt.target === modal) {
+    if (evt.target === button || evt.target === modal) {
       close();
     }
   }
 
   function handleDocumentKey(evt) {
-    if(isEscapeKey(evt)) {
+    if (isEscapeKey(evt)) {
       evt.stopPropagation();
       evt.preventDefault();
       close();
@@ -37,4 +38,4 @@ const createNotification = (template, captureEscape = false) => {
 const successfulFormSubmission = () => createNotification(templateSuccess);
 const failFormSubmission = () => createNotification(templateError, true);
 
-export { successfulFormSubmission,failFormSubmission };
+export { successfulFormSubmission, failFormSubmission };

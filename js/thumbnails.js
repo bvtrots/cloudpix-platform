@@ -1,6 +1,7 @@
 import { showBigPhoto } from './show-big-photo/show-big-photo.js';
 import { getPhotoById } from './show-big-photo/photo-state.js';
 import { getTemplate } from './utils/util.js';
+import {getFullUrl} from "./utils/api";
 
 const template = getTemplate('picture');
 const container = document.querySelector('.pictures');
@@ -8,11 +9,10 @@ const container = document.querySelector('.pictures');
 const createThumbnail = (photo) => {
   const thumbnail = template.cloneNode(true);
   const image = thumbnail.querySelector('.picture__img');
-
-  image.src = photo.url;
+  image.src = getFullUrl(photo.url);
   image.alt = photo.description;
 
-  thumbnail.href = `${photo.id}`;
+  thumbnail.href = photo.url;
   thumbnail.dataset.id = photo.id;
   thumbnail.querySelector('.picture__likes').textContent = photo.likes;
   thumbnail.querySelector('.picture__comments').textContent =
@@ -30,8 +30,11 @@ container.addEventListener('click', (evt) => {
     evt.preventDefault();
     const id = Number(thumbnail.dataset.id);
     const photo = getPhotoById(id);
-    showBigPhoto (photo);
+    showBigPhoto(photo);
   }
 });
 
-export { renderThumbnails };
+const clearThumbnails = () =>
+  container.querySelectorAll('.picture').forEach((item) => item.remove());
+
+export { renderThumbnails, clearThumbnails };
