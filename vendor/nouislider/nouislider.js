@@ -1,4 +1,4 @@
-/*! nouislider - 15.6.0 - 05/01/2022 */
+
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -901,29 +901,27 @@
       var actions = getActions();
       var supportsTouchActionNone = getSupportsTouchActionNone();
       var supportsPassive = supportsTouchActionNone && getSupportsPassive();
-      // All variables local to 'scope' are prefixed with 'scope_'
-      // Slider DOM Nodes
+
+
       var scope_Target = target;
       var scope_Base;
       var scope_Handles;
       var scope_Connects;
       var scope_Pips;
       var scope_Tooltips;
-      // Slider state values
+
       var scope_Spectrum = options.spectrum;
       var scope_Values = [];
       var scope_Locations = [];
       var scope_HandleNumbers = [];
       var scope_ActiveHandlesCount = 0;
       var scope_Events = {};
-      // Document Nodes
       var scope_Document = target.ownerDocument;
       var scope_DocumentElement = options.documentElement || scope_Document.documentElement;
       var scope_Body = scope_Document.body;
-      // For horizontal sliders in standard ltr documents,
-      // make .noUi-origin overflow to the left so the document doesn't scroll.
+
       var scope_DirOffset = scope_Document.dir === "rtl" || options.ort === 1 ? 0 : 100;
-      // Creates a node, adds it to target, returns the new node.
+
       function addNodeTo(addTarget, className) {
           var div = scope_Document.createElement("div");
           if (className) {
@@ -932,15 +930,13 @@
           addTarget.appendChild(div);
           return div;
       }
-      // Append a origin to the base
+
       function addOrigin(base, handleNumber) {
           var origin = addNodeTo(base, options.cssClasses.origin);
           var handle = addNodeTo(origin, options.cssClasses.handle);
           addNodeTo(handle, options.cssClasses.touchArea);
           handle.setAttribute("data-handle", String(handleNumber));
           if (options.keyboardSupport) {
-              // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
-              // 0 = focusable and reachable
               handle.setAttribute("tabindex", "0");
               handle.addEventListener("keydown", function (event) {
                   return eventKeydown(event, handleNumber);
@@ -962,31 +958,28 @@
           }
           return origin;
       }
-      // Insert nodes for connect elements
+
       function addConnect(base, add) {
           if (!add) {
               return false;
           }
           return addNodeTo(base, options.cssClasses.connect);
       }
-      // Add handles to the slider base.
+
       function addElements(connectOptions, base) {
           var connectBase = addNodeTo(base, options.cssClasses.connects);
           scope_Handles = [];
           scope_Connects = [];
           scope_Connects.push(addConnect(connectBase, connectOptions[0]));
-          // [::::O====O====O====]
-          // connectOptions = [0, 1, 1, 1]
+
           for (var i = 0; i < options.handles; i++) {
-              // Keep a list of all added handles.
               scope_Handles.push(addOrigin(base, i));
               scope_HandleNumbers[i] = i;
               scope_Connects.push(addConnect(connectBase, connectOptions[i + 1]));
           }
       }
-      // Initialize a single slider.
+
       function addSlider(addTarget) {
-          // Apply classes and data to the target.
           addClass(addTarget, options.cssClasses.target);
           if (options.dir === 0) {
               addClass(addTarget, options.cssClasses.ltr);
@@ -1018,7 +1011,7 @@
       function isSliderDisabled() {
           return scope_Target.hasAttribute("disabled");
       }
-      // Disable the slider dragging if any handle is disabled
+
       function isHandleDisabled(handleNumber) {
           var handleOrigin = scope_Handles[handleNumber];
           return handleOrigin.hasAttribute("disabled");
@@ -1034,10 +1027,10 @@
               scope_Tooltips = null;
           }
       }
-      // The tooltips option is a shorthand for using the 'update' event.
+
       function tooltips() {
           removeTooltips();
-          // Tooltips are added with options.tooltips in original order.
+
           scope_Tooltips = scope_Handles.map(addTooltip);
           bindEvent("update" + INTERNAL_EVENT_NS.tooltips, function (values, handleNumber, unencoded) {
               if (!scope_Tooltips || !options.tooltips) {
@@ -1056,15 +1049,15 @@
       function aria() {
           removeEvent("update" + INTERNAL_EVENT_NS.aria);
           bindEvent("update" + INTERNAL_EVENT_NS.aria, function (values, handleNumber, unencoded, tap, positions) {
-              // Update Aria Values for all handles, as a change in one changes min and max values for the next.
+
               scope_HandleNumbers.forEach(function (index) {
                   var handle = scope_Handles[index];
                   var min = checkHandlePosition(scope_Locations, index, 0, true, true, true);
                   var max = checkHandlePosition(scope_Locations, index, 100, true, true, true);
                   var now = positions[index];
-                  // Formatted value for display
+
                   var text = String(options.ariaFormat.to(unencoded[index]));
-                  // Map to slider range values
+
                   min = scope_Spectrum.fromStepping(min).toFixed(1);
                   max = scope_Spectrum.fromStepping(max).toFixed(1);
                   now = scope_Spectrum.fromStepping(now).toFixed(1);
@@ -1076,7 +1069,7 @@
           });
       }
       function getGroup(pips) {
-          // Use the range.
+
           if (pips.mode === exports.PipsMode.Range || pips.mode === exports.PipsMode.Steps) {
               return scope_Spectrum.xVal;
           }
@@ -2200,7 +2193,7 @@
           set: valueSet,
           setHandle: valueSetHandle,
           reset: valueReset,
-          // Exposed for unit testing, don't use this in your application.
+
           __moveHandles: function (upward, proposal, handleNumbers) {
               moveHandles(upward, proposal, scope_Locations, handleNumbers);
           },
@@ -2218,30 +2211,29 @@
           getOrigins: function () {
               return scope_Handles;
           },
-          pips: pips, // Issue #594
+          pips: pips,
       };
       return scope_Self;
   }
-  // Run the standard initializer
+
   function initialize(target, originalOptions) {
       if (!target || !target.nodeName) {
           throw new Error("noUiSlider: create requires a single element, got: " + target);
       }
-      // Throw an error if the slider was already initialized.
+
       if (target.noUiSlider) {
           throw new Error("noUiSlider: Slider was already initialized.");
       }
-      // Test the options and create the slider environment;
+
       var options = testOptions(originalOptions);
       var api = scope(target, options, originalOptions);
       target.noUiSlider = api;
       return api;
   }
   var nouislider = {
-      // Exposed for unit testing, don't use this in your application.
+
       __spectrum: Spectrum,
-      // A reference to the default classes, allows global changes.
-      // Use the cssClasses option for changes to one slider.
+
       cssClasses: cssClasses,
       create: initialize,
   };

@@ -22,4 +22,8 @@ function debounce(callback, timeoutDelay = 500) {
   };
 }
 
-export { isUniqueArray, getTemplate, debounce };
+const reloadPage = () => {
+  window.location.reload();
+};
+
+export { isUniqueArray, getTemplate, debounce, reloadPage };
