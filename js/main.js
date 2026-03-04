@@ -15,6 +15,5 @@ getPhotos()
 
 function processData(data) {
   savePhotos(data);
-  renderThumbnails(data);
   handleSelectFilters(data);
 }
