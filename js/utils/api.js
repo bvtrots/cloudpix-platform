@@ -1,9 +1,10 @@
-const BASE_URL = '/';
+const SERVER_URL = 'https://bvtrots-mock-server.onrender.com';
 
+const BASE_URL = `${SERVER_URL}/cloudpix-platform`;
 
 const Route = {
   GET_DATA: '/data',
-  SEND_DATA: '/',
+  SEND_DATA: '/upload',
 };
 
 const Method = {
@@ -22,7 +23,9 @@ const load = async (route, method = Method.GET, body = null) => {
 };
 
 const getPhotos =() =>  load(Route.GET_DATA);
+const getFullPhotoUrl = (url) =>
+  `${SERVER_URL}/public/cloudpix-platform/${url}`;
 
 const uploadNewPhoto = (body) => load(Route.SEND_DATA, Method.POST, body);
 
-export { getPhotos, uploadNewPhoto };
+export { getPhotos, uploadNewPhoto, getFullPhotoUrl };
