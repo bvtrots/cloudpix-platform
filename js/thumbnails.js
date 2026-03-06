@@ -1,6 +1,7 @@
 import { showBigPhoto } from './show-big-photo/show-big-photo.js';
 import { getPhotoById } from './show-big-photo/photo-state.js';
 import { getTemplate } from './utils/util.js';
+import {getFullPhotoUrl} from "./utils/api";
 
 const template = getTemplate('picture');
 const container = document.querySelector('.pictures');
@@ -9,7 +10,7 @@ const createThumbnail = (photo) => {
   const thumbnail = template.cloneNode(true);
   const image = thumbnail.querySelector('.picture__img');
 
-  image.src = photo.url;
+  image.src = getFullPhotoUrl(photo.url);
   image.alt = photo.description;
 
   thumbnail.href = photo.url;

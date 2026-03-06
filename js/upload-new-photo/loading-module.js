@@ -10,6 +10,7 @@ import {
   successfulFormSubmission,
   failFormSubmission,
 } from './status-modals.js';
+import {reloadPage} from "../utils/util";
 
 const form = document.querySelector('.img-upload__form');
 const filename = form.filename;
@@ -24,6 +25,7 @@ const onDocumentEscape = (evt) => {
   if (isEscapeKey(evt) && !isFocusText()) {
     evt.preventDefault();
     closeModal();
+    reloadPage();
   }
 };
 

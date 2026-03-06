@@ -1,20 +1,14 @@
-import {renderThumbnails} from './thumbnails.js';
-import {savePhotos} from './show-big-photo/photo-state.js';
+import { renderThumbnails } from './thumbnails.js';
+import { savePhotos } from './show-big-photo/photo-state.js';
 import './upload-new-photo/loading-module.js';
-import {getPhotos} from './utils/api.js';
-import {handleSelectFilters} from './filters/filters.js';
-import data from './data.json';
+import { getPhotos } from './utils/api.js';
+import { errorLoadPhotos } from './upload-new-photo/error-load-photos.js';
+import { handleSelectFilters } from './filters/filters.js';
 
 getPhotos()
   .then((photos) => {
-    processData(photos);
+    savePhotos(photos);
+    renderThumbnails(photos);
+    handleSelectFilters(photos);
   })
-  .catch(() => {
-    processData(data);
-  });
-
-function processData(data) {
-  savePhotos(data);
-  renderThumbnails(data);
-  handleSelectFilters(data);
-}
+  .catch(errorLoadPhotos);
