@@ -128,18 +128,27 @@ main {
   font-size: 18px;
   line-height: auto;
   text-transform: uppercase;
+  border-radius: 10px;
+
+  color: #8686e0;
 
   cursor: pointer;
-  background-color: #232321;
+  background-color: #2455c9;
   border: none;
+}
+
+.img-filters__button:hover{
+  transform:scale(1.1);
+  transition:0.1s ease-in all;
+  color: #f9f9fd;
 }
 
 .img-filters__button:active,
 .img-filters__button--active {
-  color: #ff4e4e;
+  color: #f9f9fd;
 
-  background-color: #ffffff;
-  border-radius: 2px;
+  background-color: #087fe5;
+  border-radius: 12px;
 }
 
 .img-filters__label {
@@ -182,7 +191,7 @@ main {
 .picture__img {
   max-width: auto;
   width: 100%;
-  height: auto;
+  object-fit: cover;
 }
 
 .picture__info {
@@ -305,6 +314,7 @@ main {
   font-size: 0;
 
   background-image: url("../img/upload-button-bg.png");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 
@@ -324,7 +334,6 @@ main {
   background-image: url("../img/upload-button.svg");
   background-repeat: no-repeat;
   background-position: center;
-
   -webkit-filter: drop-shadow(0 0 10px #943106);
           filter: drop-shadow(0 0 10px #943106);
 }
@@ -333,6 +342,7 @@ main {
 .img-upload__label:active::after {
   -webkit-filter: drop-shadow(0 0 10px #622104);
           filter: drop-shadow(0 0 10px #622104);
+
 
   -webkit-transform: scale(1.1);
       -ms-transform: scale(1.1);
@@ -730,6 +740,7 @@ main {
 
 .big-picture__img img {
   display: block;
+  object-fit: contain;
 }
 
 .social {
