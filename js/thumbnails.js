@@ -9,7 +9,6 @@ const container = document.querySelector('.pictures');
 const createThumbnail = (photo) => {
   const thumbnail = template.cloneNode(true);
   const image = thumbnail.querySelector('.picture__img');
-
   image.src = getFullPhotoUrl(photo.url);
   image.alt = photo.description;
 
