@@ -1073,8 +1073,12 @@ main {
 
   font-size: 0;
 
-  background-image: url("../img/sprite.png");
+
   background-repeat: no-repeat;
+  background-position: center;
+  background-color:white;
+  border-radius: 50px;
+  background-size: cover;
 
   opacity: 0.6;
   cursor: pointer;
@@ -1085,12 +1089,12 @@ main {
   opacity: 1;
 }
 
-.contacts__link--twitter {
-  background-position: -5px -270px;
+.contacts__link--vk {
+  background-image:url('../img/vk.svg');
 }
 
-.contacts__link--vk {
-  background-position: -5px -309px;
+.contacts__link--telegram {
+  background-image:url('../img/tg.svg');
 }
 
 
