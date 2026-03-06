@@ -19,12 +19,13 @@ const load = async (route, method = Method.GET, body = null) => {
     throw new Error();
   }
 
-  return await response.json();
+  const data = await response.json();
+  return {response, data};
 };
 
 const getPhotos =() =>  load(Route.GET_DATA);
 const getFullPhotoUrl = (url) =>
-  `${SERVER_URL}/public/cloudpix-platform/${url}`;
+  `${SERVER_URL}${url}`;
 
 const uploadNewPhoto = (body) => load(Route.SEND_DATA, Method.POST, body);
 
