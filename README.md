@@ -1,46 +1,70 @@
-📸 CloudPix — Photo Sharing Ecosystem
-Легковесное и производительное Single Page Application для публикации, обработки и фильтрации пользовательского контента
-Проект сфокусирован на реализации сложной бизнес-логики на чистом JavaScript без использования тяжелых фреймворков.
+# 📸 CloudPix — Photo Sharing Ecosystem
 
-🛠 Технологический стек
-Core: JavaScript (ES6+) — модульная архитектура.
+<p align="center">
+  <img src="./img/app-screenshot.jpg" alt="CloudPix Interface" width="600px">
+</p>
 
-UI Engine: HTML5 (семантика), CSS3 (Flexbox, Grid).
+<p align="center">
+  <strong>A lightweight and high-performance Single Page Application (SPA) for publishing, processing, and filtering user-generated content.</strong>
+</p>
 
-State Management: Client-side state для управления фильтрами и модальными окнами.
+---
 
-Networking: Fetch API с реализацией системы переиспользования модулей запросов.
+## 📖 Overview
+This project focuses on implementing complex business logic using **Vanilla JavaScript** without heavy frameworks. Special attention is given to modularity and interface performance when handling media data.
 
-Libraries: * PristineJS — декларативная валидация форм.
+## 🛠 Tech Stack
+| Layer | Technologies |
+| :--- | :--- |
+| **Core** | JavaScript (ES6+) — Modular Architecture |
+| **UI Engine** | HTML5 (Semantic), CSS3 (Flexbox, Grid) |
+| **Networking** | Fetch API with reusable request modules |
+| **Libraries** | PristineJS (Validation), noUiSlider (Effects) |
+| **Build Tool** | Vite |
 
-noUiSlider — компонент для кастомного управления эффектами.
+---
 
-Build Tool: Vite.
+## 🎯 Key Features & Engineering Challenges
+* 💎 **Modular Architecture**: The project is divided into independent components (`gallery`, `form`, `editor`, `api`), adhering to the **Single Responsibility** principle.
+* ⚡ **Performance Optimization**: Implemented the **Debounce** pattern for photo filtering to minimize DOM re-renders and enhance responsiveness.
+* 🛡️ **Validation & Security**: Integrated **Pristine.js** for dynamic hashtag validation (RegExp, duplicate checks) and comment sanitization.
+* 📡 **API Layer**: A universal transport layer based on the Fetch API. It uses the [bvtrots-mock-server](https://bvtrots-mock-server.onrender.com/) hosted on **Render** as a backend.
+* 🎨 **Interactive UI**: Features complex image scaling logic and a dynamic filter system powered by CSS variables controlled via JS events.
 
-🎯 Ключевые фичи и инженерные задачи
-💎 Архитектура на модулях: Проект разделён на независимые компоненты (gallery, form, editor, api), что позволяет реализовать принцип единственной ответственности (Single Responsibility).
+---
 
-⚡ Performance Optimization: Применён паттерн Debounce (устранение дребезга) при фильтрации фотографий, что минимизирует количество перерисовок DOM и повышает отзывчивость интерфейса при больших объемах данных.
+## 📂 Project Structure
+Based on the architectural design:
+```text
+cloudpix-platform/
+├── css/              # Application styles
+├── img/              # Static images & assets
+├── js/               # Logic source code
+│   ├── filters/      # Content filtering modules
+│   ├── show-big-photo/ # Full-screen view logic
+│   ├── upload-new-photo/ # Upload form & image editing
+│   ├── utils/        # Helpers (API, modals, shared utils)
+│   └── main.js       # Entry point
+├── index.html        # Main page
+└── package.json      # Dependencies & project config
+```
+⚙️ Installation & Setup
+1. Clone the repository
+   Bash
+   git clone [https://github.com/bvtrots/cloudpix-platform.git](https://github.com/bvtrots/cloudpix-platform.git)
+   cd cloudpix-platform
+2. Install dependencies
+   Bash
+   npm install
+3. Run in development mode
+   Bash
+   npm run dev
+   [!IMPORTANT]
+   Note: The application uses a free Render instance for the backend. Free instances spin down after inactivity. On the first launch, it may take 30–60 seconds for the server to "wake up." If data doesn't load immediately, please visit the backend link to trigger the server wake-up.
 
-🛡️ Валидация и безопасность: В систему интегрирована библиотека Pristine.js для динамической проверки хештегов (регулярные выражения, проверка на дубликаты) и комментариев, что обеспечивает чистоту данных перед отправкой на сервер.
+📝 Engineering Commentary
+This project places a strong emphasis on DOM manipulation and asynchronous interaction. The implemented logic for "infinite" rendering and content filtering is designed to maintain stable memory consumption even during long user sessions. The code follows ES-Modules standards, making it highly maintainable and ready for future TypeScript migration.
 
-📡 API Layer: Разработан универсальный транспортный слой на базе fetch, поддерживающий обработку HTTP-ошибок и автоматическое уведомление пользователя через кастомные UI-фидбеки (success/error блоки).
-
-🎨 Interactive UI: Реализована сложная логика масштабирования изображений и система динамических фильтров с использованием CSS-переменных, управляемых через JS-события.
-
-⚙️ Установка и запуск
-Клонирование репозитория:
-
-Bash
-git clone https://github.com/bvtrots/cloudpix-platform.git
-
-Установка зависимостей:
-Bash
-npm install
-
-Запуск в режиме разработки:
-Bash
-npm run dev
-
-📝 Инженерный комментарий
-В данном проекте уделено особое внимание DOM-манипуляциям и асинхронному взаимодействию. Реализованная логика "бесконечной" отрисовки и фильтрации контента спроектирована таким образом, чтобы потребление памяти оставалось стабильным даже при длительных сессиях пользователя. Код структурирован согласно современным стандартам (ES-Modules), что делает его легко тестируемым и готовым к миграции на TypeScript.
+<p align="center">
+Developed with ❤️ by <strong>bvtrots</strong>
+</p>
