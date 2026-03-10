@@ -1,11 +1,26 @@
-const toast = document.getElementById('server-status-toast');
+const toast = 'server-status-toast';
+const LOCAL_SUBSTR = 'localhost';
 
-export function showToast() {
-  toast.classList.remove('hidden');
-  setTimeout(() => toast.classList.add('visible'), 1000);
+class Toast {
+
+  constructor(SERVER_URL){
+    this.toastElement = document.getElementById(toast);
+    this.serverURL = SERVER_URL;
+    this.isLocalServer = this.serverURL.includes(LOCAL_SUBSTR);
+  }
+
+  showToast() {
+    if (this.isLocalServer){
+    this.toastElement.classList.remove('hidden');
+    this.toastElement.classList.add('visible');
+    }
+  }
+
+  hideToast() {
+    this.toastElement.classList.remove('visible');
+    this.toastElement.classList.add('hidden');
+  }
+
 }
 
-export function hideToast() {
-  toast.classList.add('hidden');
-  setTimeout(() => toast.classList.add('visible'), 1000);
-}
+export default Toast;
