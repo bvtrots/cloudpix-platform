@@ -30,7 +30,7 @@ This project focuses on implementing complex business logic using **Vanilla Java
 * 💎 **Modular Architecture**: The project is divided into independent components (`gallery`, `form`, `editor`, `api`), adhering to the **Single Responsibility** principle.
 * ⚡ **Performance Optimization**: Implemented the **Debounce** pattern for photo filtering to minimize DOM re-renders and enhance responsiveness.
 * 🛡️ **Validation & Security**: Integrated **Pristine.js** for dynamic hashtag validation (RegExp, duplicate checks) and comment sanitization.
-* 📡 **API Layer**: A universal transport layer based on the Fetch API. It uses the [bvtrots-mock-server](https://bvtrots-mock-server.onrender.com/) hosted on **Render** as a backend.
+* 📡 **API Layer**: A universal transport layer based on the Fetch API. It uses the [bvtrots-test-server](https://bvtrots-test-server.onrender.com) hosted on **Render** as a backend.
 * 🎨 **Interactive UI**: Features complex image scaling logic and a dynamic filter system powered by CSS variables controlled via JS events.
 
 ---
