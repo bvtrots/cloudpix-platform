@@ -23,7 +23,6 @@ const createThumbnail = (photo) => {
 
 const renderThumbnails = (photos) =>
   container.append(...photos.map(createThumbnail));
-
 container.addEventListener('click', (evt) => {
   const thumbnail = evt.target.closest('.picture');
   if (thumbnail) {
